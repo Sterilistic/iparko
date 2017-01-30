@@ -1,0 +1,151 @@
+{% extends 'profile.html' %}
+
+{% load static %}
+{% block bcrumb %} <ol style="margin-bottom: 0px;" class="breadcrumb">
+  <li class="breadcrumb-item"><a href="/">Home</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'practice' %}">Practice</a></li>
+  <li class="breadcrumb-item active">Question List</li>
+</ol>{% endblock %}
+{% block title %} Practice-Question List{% endblock %}
+{% block heading %} Practice to refine your skills {% endblock %}
+{% block content2 %}
+<style type="text/css">\
+	/*div.e:hover{
+		background-color: #000;
+	}*/
+	a.cardhead:hover{
+		text-decoration: none;
+		font-size: 50px;
+		color:white;
+        background-color: #039BE5;
+        transition: background 0.2s linear;
+    -moz-transition: background 0.2s linear; /* Firefox 4 */
+    -webkit-transition: background 0.2s linear; /* Safari and Chrome */
+    -o-transition: background 0.2s linear; /* Opera */
+    -ms-transition: background 0.2s linear; /* Explorer 10 */
+	}
+	.centercard{
+		display: flex;
+	    justify-content: center;
+	    align-items: center;
+	}
+	.dragdown{
+		padding-top: 20%;
+		padding-bottom: 20%
+	}
+	.cardhead{
+		font-family: 'Oxygen', 'san-serif';
+		color: #204056;
+	}
+	.cardheadsize{
+		font-size:3em;
+	}
+    .zeus{
+    border: 1px solid black;
+    text-align: center;
+    }
+    .book {
+    padding: 15px 0 0 0;
+    margin: auto;
+}
+    .shelf {
+        border-bottom: 30px solid #A1A194;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        top: -15px;
+        z-index: -1;
+    }
+</style>
+
+
+    <div style="margin-top: 20px;" class=" col-md-12 col-xs-12 col-lg-12 panel with-nav-tabs ">
+    <div class="panel-heading">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1primary" data-toggle="tab">Beginner</a></li>
+                <li><a href="#tab2primary" data-toggle="tab">Easy</a></li>
+                <li><a href="#tab3primary" data-toggle="tab">Medium</a></li>
+                <li><a href="#tab4primary" data-toggle="tab">Hard</a></li>
+                <li><a href="#tab5primary" data-toggle="tab">Expert</a></li>
+                <!-- <li class="dropdown">
+                    <a href="#" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#tab4primary" data-toggle="tab">Primary 4</a></li>
+                        <li><a href="#tab5primary" data-toggle="tab">Primary 5</a></li>
+                    </ul>
+                </li> -->
+            </ul>
+    </div>
+    <div class="panel-body">
+        <div class="tab-content">
+        
+            <div class="tab-pane fade in active" id="tab1primary"></div>
+        
+            <div class="tab-pane fade" id="tab2primary">Problem set 2</div>
+            <div class="tab-pane fade" id="tab3primary">Problem set 3</div>
+            <div class="tab-pane fade" id="tab4primary">Problem set 4</div>
+            <div class="tab-pane fade" id="tab5primary">Problem set 5</div>
+
+        </div>
+    </div>
+</div>
+
+  <script type="text/javascript">
+      document.getElementById("panelbd").style.display = "None";
+      document.getElementById("panelques").style.display = "None";
+  </script>  
+  <script type="text/javascript">
+      function list_question(){
+        var panelcontent = document.getElementById('tab1primary');
+        var a = {{ questions|safe }};
+        //alert(a.length);
+        for (var i = 0; i < a.length; i++) {
+            //alert(a[i].question);
+            var k = a[i].question;
+            var TextInsideLi = textFromHTMLString(k, 'p');
+            //alert(TextInsideLi);
+            var questionpane = document.createElement('div');
+            questionpane.setAttribute('class','panel panel-info');
+            var questiontxt = document.createElement('div');
+            questiontxt.setAttribute('class','panel-heading');
+            var queslink =document.createElement('a');
+            queslink.setAttribute('id',a[i].id);
+            queslink.href = "question/?qid="+a[i].id+"&lang={{ lang }}";
+            var quespara = document.createElement('p');
+            quespara.setAttribute('style','text-overflow: ellipsis;width: 700px;white-space: nowrap;overflow: hidden; margin-bottom:0px;');
+            quespara.setAttribute('class','quesp');
+            queslink.appendChild(quespara);
+            questiontxt.appendChild(queslink);
+            questionpane.appendChild(questiontxt);
+            quespara.innerHTML = TextInsideLi;
+            panelcontent.appendChild(questionpane);
+        }
+        //document.getElementById('tab1primary').innerHTML=a[1].question;
+        // alert("dshjfdslkfj");
+      }
+      
+      
+      $(document).ready(function() {
+            // alert('Hello Tom!');
+            list_question();
+        });
+      function textFromHTMLString(html, target) {
+            if (!html || !target) {
+                return false;
+            }
+            else {
+                var fragment = document.createDocumentFragment(),
+                    container = document.createElement('div');
+                container.innerHTML = html;
+                fragment.appendChild(container);
+                var targets = fragment.firstChild.getElementsByTagName(target),
+                    result = [];
+                result.push(targets[0].textContent || targets[0].innerText);
+                // for (var i = 0, len = targets.length; i<len; i++) {
+                //     result.push(targets[i].textContent || targets[i].innerText);
+                // }
+                return result;        
+            }
+        }
+  </script>
+
+{% endblock %}

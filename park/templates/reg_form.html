@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Register Here {% endblock %}
+
+{% block links %} 
+<link rel="stylesheet" type="text/css" href="{% static 'css/reg_form.css' %}">
+<style type="text/css">
+  .adders{
+  background-color: #26a69a;
+  margin:2px;
+  color: white
+}
+
+.material-icons{
+
+  color: white;
+}
+
+</style>
+{% endblock %}
+{% block heading%} <h4 class="heading grey-text center" > Enter your details here </h4> {% endblock %}
+{% block content %}
+
+	<div class="row">
+    <form class="col s8 offset-l4">
+        <!-- Name Fields -->      
+        <div class="row">
+          <div class="input-field col s6 l3">
+            <input id="first_name" type="text" class="validate">
+            <label for="first_name">First Name</label>
+          </div>
+          <div class="input-field col s6 l3">
+            <input id="last_name" type="text" class="validate">
+            <label for="last_name">Last Name</label>
+          </div>
+        </div>
+
+        <!-- Email ID and phone number -->
+        <div class="row">
+          <div class="input-field col s12 l6">
+            <input id="email" type="email" class="validate">
+            <label for="email" data-error="Invalid E-mail ID!" data-success="">Email</label>
+          </div>
+        </div>
+
+
+        <!-- Date of Birth. Should it be removed? The intention was to limit the years listed later in the form based on their year of birth-->
+        <div class="row">
+          <div class="input-field col s6 l3">
+            <input id="dob" type="text" class="datepicker">
+            <label for="dob">Date of Birth</label>
+          </div>
+
+
+          <div class="input-field col s6 l3">
+            <input id="phone" type="tel" pattern="^\d{10}$" class="validate">
+            <label for="phone" data-error="Invalid Phone Number!" data-success="">Phone Number</label>
+          </div>
+        
+        </div>
+
+        <!-- div class="divider"></div -->
+
+        <!-- Add skills -->
+        <div class="row">
+          <div class="col s12 l6">
+          <label> Add your skills</label>
+          <div id="skill" class="chips chips-placeholder"></div>
+          </div>
+        </div>
+
+        <!-- Add Interest -->    
+        <div class="row">
+          <div class="input-field col s6 l3">
+            <select>
+              <option value="" disabled selected>Interested in ...</option>
+              <option value="1">Job</option>
+              <option value="2">Internship</option>
+            </select>
+          </div>
+
+          <div class="input-field col s6 l3">
+            <select>
+              <option value="" disabled selected>Period</option>
+              <option value="1">Full-Time</option>
+              <option value="2">Part-Time</option>
+              <option value="3">Contract</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- to be included to add multiple education elements. Same to be implemented for experience in projects-->
+        <div class="row">
+          <div class="col s12 l6">
+            <div class="card adders"><p style="padding: 7px 0px 9px 18px;">ADD EDUCATION <i class="material-icons" style="margin: 0 0 0 127px;">add_circle_outline</i> </p>
+          </div>
+          </div>
+        </div>
+
+        <!-- Add Education -->    
+        <div class="row">
+          <div class="input-field col s8 l4">
+            <select>
+              <option value="" disabled selected>Add Education</option>
+              <option value="1">High School</option>
+              <option value="2">Associate Degree</option>
+              <option value="3">Bachelor's Degree</option>
+              <option value="3">Master's Degree</option>
+            </select>
+          </div>
+        </div>
+  
+      <!-- If edu = high school, show name, years -->
+      <div class="row hidden">
+          <div class="input-field col s12 l6">
+            <input id="school_name" type="text" class="validate">
+            <label for="school_name">Name of the Institution</label>
+        </div>
+      </div>
+
+      <!-- From and To years (For experience and education) -->
+      <div class="row">
+          <div class="input-field col s4 l2">
+            <select id="from_year" type="number" class="validate"></select>
+            <label for="from_year">From</label>
+        </div>
+        <div class="input-field col s4 l2">
+            <select id="to_year" type="number" class="validate"></select>
+            <label for="to_year">To</label>
+        </div>
+      </div>
+
+      <!-- Project - Title, Role, Description -->
+
+      <div class="row">
+        <div class="input-field col s12 l6">
+          <input id="proj_title" type="text" class="validate">
+          <label for="proj_title">Project Title</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 l6">
+          <input id="role" type="text" class="validate">
+          <label for="role">Your Role</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="proj_desc" class="materialize-textarea"></textarea>
+          <label for="proj_desc">Project Description</label>
+        </div>
+      </div>
+
+
+        <div class="row">
+          <div class="col s12">
+          <a class="col waves-effect waves-light btn">SUBMIT</a>
+           </div>
+        </div>
+
+    </form>
+  </div>
+
+{% endblock %}
+
+{% block script%}
+  <script type="text/javascript" src={% static "js/reg_form.js" %}></script>
+
+
+{% endblock%}

@@ -1,0 +1,92 @@
+{% extends 'profile.html' %}
+
+{% load static %}
+{% block bcrumb %} <ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="/">Home</a></li>
+  <li class="breadcrumb-item active">Practice</li>
+</ol>{% endblock %}
+{% block title %} Practice {% endblock %}
+{% block heading %} Practice to refine your skills {% endblock %}
+{% block content2 %}
+<style type="text/css">\
+	/*div.e:hover{
+		background-color: #000;
+	}*/
+	a.cardhead:hover{
+		text-decoration: none;
+		font-size: 50px;
+		color:white;
+        background-color: #039BE5;
+        transition: background 0.2s linear;
+    -moz-transition: background 0.2s linear; /* Firefox 4 */
+    -webkit-transition: background 0.2s linear; /* Safari and Chrome */
+    -o-transition: background 0.2s linear; /* Opera */
+    -ms-transition: background 0.2s linear; /* Explorer 10 */
+	}
+	.centercard{
+		display: flex;
+	    justify-content: center;
+	    align-items: center;
+	}
+	.dragdown{
+		padding-top: 20%;
+		padding-bottom: 20%
+	}
+	.cardhead{
+		font-family: 'Oxygen', 'san-serif';
+		color: #204056;
+	}
+	.cardheadsize{
+		font-size:3em;
+	}
+    .zeus{
+    border: 1px solid black;
+    text-align: center;
+    }
+    .book {
+    padding: 15px 0 0 0;
+    margin: auto;
+}
+    .shelf {
+        border-bottom: 30px solid #A1A194;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        top: -15px;
+        z-index: -1;
+    }
+</style>
+
+    <div style="width: 100%; margin-bottom: 50px;" class="container">
+    <div style="margin-right: 15px;" class="row">
+        <div class="col-xs-4 col-md-2"><a href="{% url 'getquestions' %}?lang=python" id="python"><img src="{% static 'images/pythonlogo.png' %}" class="img-responsive book"/></a></div>
+        <div class="col-xs-4 col-md-2"><a href="{% url 'getquestions' %}"><img src="{% static 'images/java.png' %}" class="img-responsive book"/></a></div>
+        <div class="col-xs-4 col-md-2"><a href="{% url 'getquestions' %}"><img src="{% static 'images/csharp.png' %}" class="img-responsive book"/></a></div>
+        <div class="col-xs-12 shelf hidden-md hidden-lg"></div>
+        <div class="col-xs-4 col-md-2"><img src="http://placehold.it/150x190" class="img-responsive book"/></div>
+        <div class="col-xs-4 col-md-2"><img src="http://placehold.it/150x190" class="img-responsive book"/></div>
+        <div class="col-xs-4 col-md-2"><img src="http://placehold.it/150x190" class="img-responsive book"/></div>
+        <!-- <div class="col-xs-12 shelf"></div> -->
+        <div class="col-xs-4 col-md-2"><img src="http://placehold.it/150x190" class="img-responsive book"/></div>
+        <div class="col-xs-4 col-md-2"><img src="http://placehold.it/150x190" class="img-responsive book"/></div>
+        <div class="col-xs-4 col-md-2"><img src="http://placehold.it/150x190" class="img-responsive book"/></div>
+        <div class="col-xs-12 shelf hidden-md hidden-lg"></div>
+        <div class="col-xs-4 col-md-2"><img src="http://placehold.it/150x190" class="img-responsive book"/></div>
+        <div class="col-xs-4 col-md-2"><img src="http://placehold.it/150x190" class="img-responsive book"/></div>
+        <div class="col-xs-4 col-md-2"><img src="http://placehold.it/150x190" class="img-responsive book"/></div>
+        <div class="col-xs-12 shelf hidden-md hidden-lg"></div>
+        <div class="col-xs-4 col-md-2"><img src="http://placehold.it/150x190" class="img-responsive book"/></div>
+        <div class="col-xs-4 col-md-2"><img src="http://placehold.it/150x190" class="img-responsive book"/></div>
+        <div class="col-xs-4 col-md-2"><img src="http://placehold.it/150x190" class="img-responsive book"/></div>
+        <div class="col-xs-12 shelf hidden-md hidden-lg"></div>
+        <div class="col-xs-4 col-md-2"><img src="http://placehold.it/150x190" class="img-responsive book"/></div>
+        <div class="col-xs-4 col-md-2"><img src="http://placehold.it/150x190" class="img-responsive book"/></div>
+        <div class="col-xs-4 col-md-2"><img src="http://placehold.it/150x190" class="img-responsive book"/></div>
+        <div class="col-xs-12 shelf"></div>
+    </div>
+</div> 
+    
+  <script type="text/javascript">
+      document.getElementById("panelbd").style.display = "None";
+  </script>  
+
+{% endblock %}

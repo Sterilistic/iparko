@@ -1,0 +1,151 @@
+{% extends 'profile.html' %}
+
+{% load static %}
+
+{% block content %}
+<style type="text/css">\
+	div.e:hover{
+		background-color: #000;
+	}
+	a.cardhead:hover{
+		text-decoration: none;
+		font-size: 50px;
+		color:skyblue;
+	}
+	.centercard{
+		display: flex;
+	    justify-content: center;
+	    align-items: center;
+	}
+	.dragdown{
+		padding-top: 20%;
+		padding-bottom: 20%
+	}
+	.cardhead{
+		font-family: 'Oxygen', 'san-serif';
+		color: #204056;
+	}
+	.cardheadsize{
+		font-size: -webkit-xxx-large;
+	}
+</style>
+ <div class="row" style="margin: 20px;display: flex;overflow-wrap: break-word;">
+
+            <div  class="e col-md-4" style="background-color: white;overflow-wrap: break-word;overflow: hidden;margin-right: 10px;" >
+
+                <!--Card Light-->
+                <div class="card">
+
+                    <!--Card image-->
+                    <div class="view overlay hm-white-slight">
+                        <!-- <img src="http://mdbootstrap.com/images/reg/reg%20(59).jpg" class="img-fluid img-responsive" alt=""> -->
+                        <a>
+                            <div class="mask waves-effect waves-light"></div>
+                        </a>
+                    </div>
+                    <!--/.Card image-->
+
+
+                    <!--Card content-->
+                    <div class="card-block">
+                        <!--Title-->
+                        <a class="cardhead cardheadsize dragdown card-title centercard">Learn</a>
+                        <hr>
+                        <!--Text-->
+                        <p class="card-text">Learn a software skill. Take a free course, read a few free books, watch suggested videos or read suggested articles</p>
+                       <!--  <a href="" class="link-text"><h5>Read more <i class="fa fa-chevron-right"></i></h5></a> -->
+                    </div>
+                    <!--/.Card content-->
+
+                </div>
+                <!--/.Card Light-->
+
+            </div>
+
+           <div class="col-md-4" style="background-color: white;overflow-wrap: break-word;overflow: hidden;margin-right: 10px;">
+
+                <!--Card Light-->
+                <div class="card">
+
+                    <!--Card image-->
+                    <div class="view overlay hm-white-slight">
+                        <!-- <img src="http://mdbootstrap.com/images/reg/reg%20(59).jpg" class="img-fluid img-responsive" alt=""> -->
+                        <a>
+                            <div class="mask waves-effect waves-light"></div>
+                        </a>
+                    </div>
+                    <!--/.Card image-->
+
+
+                    <!--Card content-->
+                    <div class="card-block">
+                        <!--Title-->
+                        <a class="cardhead cardheadsize dragdown card-title centercard">Practice</a>
+                        <hr>
+                        <!--Text-->
+                        <p class="card-text">The only effective way to learn software is through practicing coding. Practice as you learn and get suggestions on improvement</p>
+                        <!-- <a href="" class="link-text"><h5>Read more <i class="fa fa-chevron-right"></i></h5></a> -->
+                    </div>
+                    <!--/.Card content-->
+
+                </div>
+                <!--/.Card Light-->
+
+            </div>
+            <div class="col-md-4" style="background-color: white;overflow-wrap: break-word;overflow: hidden;margin-right: 10px;">
+
+                <!--Card Light-->
+                <div class="card">
+
+                    <!--Card image-->
+                    <div class="view overlay hm-white-slight">
+                        <!-- <img src="http://mdbootstrap.com/images/reg/reg%20(59).jpg" class="img-fluid img-responsive" alt=""> -->
+                        <a>
+                            <div class="mask waves-effect waves-light"></div>
+                        </a>
+                    </div>
+                    <!--/.Card image-->
+
+
+                    <!--Card content-->
+                    <div class="card-block">
+                        <!--Title-->
+                        <a class="cardhead cardheadsize dragdown card-title centercard">Test</a>
+                        <hr>
+                        <!--Text-->
+                        <p class="card-text">Once you learn and practice, feel free to test yourself and see your performance in numbers. Figure out how you compare with your peers</p>
+                        
+                    </div>
+                    <!--/.Card content-->
+
+                </div>
+                <!--/.Card Light-->
+
+            </div>
+            
+
+
+        </div>
+    
+
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+	$(document).ready(function() {
+
+    var item = $('#learn');
+    
+
+    // Hide toggle buttons on default position
+    // toggleButtons.css('display', 'initial');
+    // $('body').css('display', 'table');
+
+
+    // Sidebar position
+    item.addClass('active');
+    
+    });
+
+</script>
+
+ {% endblock %}

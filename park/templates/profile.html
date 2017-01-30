@@ -1,0 +1,313 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <style type="text/css">
+    html, body
+{
+    height: 100%;
+}
+  </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="#">
+    <script src="https://use.fontawesome.com/41f40c085c.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{% static 'js/jquery-3.1.1.min.js' %}"><\/script>')</script>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:300" rel="stylesheet">
+    <title>{% block title %} Skill Profile {% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- <link href="{% static 'css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet"> -->
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/disco.css' %}" rel="stylesheet">
+
+    <!-- <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script> -->
+
+  </head>
+
+  <body>
+  <style type="text/css">
+      .navbar-default .navbar-nav>li>a{
+        color: white;
+      }
+      .navbar-default .navbar-brand{
+        color: white;
+      }
+      .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover{
+        background-color: whitesmoke;
+      }
+      .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover{
+        color: white;
+        font-weight:bolder;
+      }
+  </style>
+    <!-- Overlay for fixed sidebar -->
+<nav class="navbar navbar-default navbar-fixed-top" style=" background-color: #337ab7;position: relative;margin-bottom: 0px;  /* color: blanchedalmond; */" role="navigation">
+    <div style="width: 100%;" class="container">
+     
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="icon-menu"></i> Menu
+        </button>
+        <a class="navbar-brand" href="/">Skill Profile</a>
+        </div>
+         
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+               <!--  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Our Collection of Templates &amp; Themes" aria-expanded="false">Practice <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/template-categories/all"><i class="icon-layers fa-fw"></i> All Templates &amp; Themes</a>
+                        </li>
+                        <li>
+                            <a href="/template-categories/popular"><i class="icon-star fa-fw"></i> Most Popular</a>
+                        </li>
+                        <li>
+                            <a href="/buy-bootstrap-templates"><i class="icon-handbag fa-fw"></i> Buy Bootstrap Templates</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">
+                            Template &amp; Theme Categories:
+                        </li>
+                        <li>
+                            <a href="/template-categories/admin-dashboard">Admin and Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="/template-categories/full-websites">Full Websites</a>
+                        </li>
+                        <li>
+                            <a href="/template-categories/landing-pages">Landing Pages</a>
+                        </li>
+                        <li>
+                            <a href="/template-categories/one-page">One Page Websites</a>
+                        </li>
+                        <li>
+                            <a href="/template-categories/portfolios">Portfolios</a>
+                        </li>
+                        <li>
+                            <a href="/template-categories/blogs">Blogs</a>
+                        </li>
+                        <li>
+                            <a href="/template-categories/ecommerce">Ecommerce</a>
+                        </li>
+                        <li>
+                            <a href="/template-categories/unstyled">Unstyled Starter Templates</a>
+                        </li>
+                        <li>
+                            <a href="/template-categories/navigation-menus">Navigation and Navbars</a>
+                        </li>
+                    </ul>
+                </li> -->
+                 <li>
+                    <a href="#" title="Start Bootstrap News, Guides, and Tutorials"><i style="padding-right: 5px;" class="fa fa-pencil"></i> Practice</a>
+                </li>
+                <li>
+                    <a href="#" title="Start Bootstrap News, Guides, and Tutorials"><i  style="padding-right: 5px;" class="fa fa-file-code-o"></i>Take Test</a>
+                </li>
+                <!-- <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Bootstrap Related Resources" aria-expanded="false">Resources <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/bootstrap-resources"><i class="icon-list"></i> Bootstrap Resources List</a>
+                        </li>
+                        <li>
+                            <a href="/help"><i class="icon-support"></i> Help &amp; FAQ</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/articles" title="Start Bootstrap News, Guides, and Tutorials">Articles</a>
+                </li>
+                <li>
+                    <a href="/contact" title="Contact the Start Bootstrap Team">Contact</a>
+                </li> -->
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#"  class="dropdown-toggle" data-toggle="dropdown" title="Premium Bootstrap Themes &amp; Templates" aria-expanded="false"><i class="fa fa-user"></i><span style="padding-left: 5px;" id="myName"></span>  <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="icon-pencil fa-fw"></i>Profile</a>
+                        </li>
+                        <li>
+                            <a href="/accounts/email/"><i class="icon-handbag fa-fw"></i> Email</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'account_change_password' %}"><i class="icon-handbag fa-fw"></i> Change Password</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'logout' %}"><i class="icon-handbag fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                <a href="#" data-toggle="modal" data-target="#searchModal"><i class="icon-magnifier"></i> <span class="hidden-lg hidden-md hidden-sm">Search Themes</span></a>
+                </li>
+            </ul>
+        </div>
+     
+    </div>
+ 
+</nav>
+
+
+
+
+
+
+
+
+  <div translate="no" style="position:fixed;display: table;width: 100%;height: 100%;">
+
+
+<!-- <div class="sidebar-overlay"></div> -->
+
+<!-- Material sidebar -->
+
+
+<div class="wrapper" style=" padding-left: 20px; width:100%; background-color: #e9eaea;"> <div id="profile_container" class="container " style="height: 100%;width: 100%;overflow:scroll;">
+{% block bcrumb %} {% endblock %}
+        
+
+       <div id="panelques" style="margin-top: 20px; background-color: white;" class="panel panel-default">
+            <div id="phead" class="panel-heading" style="padding-top: 0px; background-color: white;">
+                <h2 style="color: #204056; font-family: Oxygen;">{% block heading %}  Welcome to SkillProfiles {% endblock %}</h2>
+               
+            </div>
+             <div id="panelbd" class="panel-body">
+                 <h5 class="lead">{% block heading2 %}{% endblock %}</h5>
+                <div style="padding-left: 40px;">{% block content %} {% endblock %}</div>
+            </div>
+            
+        </div>
+{% block content2 %} {% endblock %}
+        
+    </div>
+</div>
+    <!-- Fixed navbar -->
+
+</div> 
+{% block modal %} {% endblock %}   
+<div class="footer navbar-fixed-bottom" style="background-color: #337ab7;margin-bottom: 0px;">
+      <div class="footer"><div style="float: right;">Powered by <span style="color: white;" class="website_link">Future Focus Infotech Pvt. Ltd.</span></div></div>
+  </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{% static 'js/jquery-3.1.1.min.js' %}"><\/script>')</script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+   
+
+    <script>
+         
+        function start(){
+            var quesp = $('.quesp');
+            //  var sidebar = $('#sidebar');
+            // var windowWidth = $(window).width();
+            // if(windowWidth<768){
+            //   //alert("man");
+
+            //     sidebar.removeClass('open');
+                
+            //     quesp.attr('style','text-overflow: ellipsis;white-space: nowrap;overflow: hidden; margin-bottom:0px;width:300px');
+            //     }
+            //   else {
+            //   //alert("man");
+            //   var sidebar = $('#sidebar');
+            //     sidebar.addClass('open');
+            //     quesp.attr('style','text-overflow: ellipsis;white-space: nowrap;overflow: hidden; margin-bottom:0px;width:750px');
+            //     }
+          get_user();
+        }
+        window.onload=start;
+      </script>
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static 'js/disco.js' %}"></script>
+    <!-- <script type="text/javascript">
+    document.getElementById("login_form").reset();
+  </script> -->
+  <script type="text/javascript">
+     var windowWidth = $(window).width();
+       if(windowWidth<768){
+      //alert("man");
+      var sidebar = $('#sidebar');
+        sidebar.removeClass('open');
+        }
+      else {
+      //alert("man");
+      var sidebar = $('#sidebar');
+        sidebar.addClass('open');
+        }
+
+    $(window).on('resize', function(event){
+    // Do stuff here
+    var quesp = $('.quesp');
+     var sidebar = $('#sidebar');
+    var windowWidth = $(window).width();
+    if(windowWidth<768){
+      //alert("man");
+
+        $('#searchbox').css('display','None');
+        sidebar.removeClass('open');
+        
+        quesp.attr('style','text-overflow: ellipsis;white-space: nowrap;overflow: hidden; margin-bottom:0px;width:300px');
+        }
+      else {
+      //alert("man");
+      var sidebar = $('#sidebar');
+        sidebar.addClass('open');
+        $('#searchbox').css('display','inline-block');
+        quesp.attr('style','text-overflow: ellipsis;white-space: nowrap;overflow: hidden; margin-bottom:0px;width:750px');
+        }
+   });
+
+  </script>
+ <script type="text/javascript">
+        // using jQuery
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+    </script>
+  {% block script %} {% endblock %}
+  </body>
+</html>

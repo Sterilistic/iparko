@@ -1,0 +1,100 @@
+{% extends "profile.html" %}
+
+{% load static %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Account" %}{% endblock %}
+
+      {% block heading %} Email {% endblock %}
+     
+          {% block content %}
+              <h3 class="lead">{% trans "E-mail Addresses" %}</h3>
+          {% if user.emailaddress_set.all %}
+          <p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
+
+          <form action="{% url 'account_email' %}" class="email_list" method="post">
+          {% csrf_token %}
+              {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                             <p><span style="color: red;">*</span> {{ error|escape }} </p>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}                        
+                           <p><span style="color: red;">*</span> {{ error|escape }} </p>
+                      {% endfor %}
+                    {% endif %}
+              {% if messages %}
+                  <div>
+                    <strong>Messages:</strong>
+                    <ul>
+                      {% for message in messages %}
+                      <li>{{message}}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+               {% endif %}
+          <fieldset class="blockLabels">
+
+            {% for emailaddress in user.emailaddress_set.all %}
+          <div class="ctrlHolder">
+                <label for="email_radio_{{forloop.counter}}" class="{% if emailaddress.primary %}primary_email{%endif%}">
+
+                <input id="email_radio_{{forloop.counter}}" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{%endif %} value="{{emailaddress.email}}"/>
+
+          {{ emailaddress.email }}
+              {% if emailaddress.verified %}
+              <span class=" label label-success verified">{% trans "Verified" %}</span>
+              {% else %}
+              <span class="label label-warning unverified">{% trans "Unverified" %}</span>
+              {% endif %}
+                {% if emailaddress.primary %}<span class="label label-primary primary">{% trans "Primary" %}</span>{% endif %}
+          </label>
+          </div>
+            {% endfor %}
+
+          <div class="radio buttonHolder">
+                <button class="btn btn-primary secondaryAction" type="submit" name="action_primary" >{% trans 'Make Primary' %}</button>
+                <button class="btn btn-primary secondaryAction" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</button>
+                <button class="btn btn-primary primaryAction" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
+          </div>
+
+          </fieldset>
+          </form>
+
+          {% else %}
+          <p><strong>{% trans 'Warning:'%}</strong> {% trans "You currently do not have any e-mail address set up. You should really add an e-mail address so you can receive notifications, reset your password, etc." %}</p>
+
+          {% endif %}
+
+
+              <h4>{% trans "Add E-mail Address" %}</h4>
+
+              <form method="post" id="changemail" action="{% url 'account_email' %}" class="col-xs-6 add_email">
+                  {% csrf_token %}
+                    <p><!-- <label for="id_email">E-mail:</label> --> 
+                    <input class="form-control " id="id_email" name="email" placeholder="Enter new E-mail address" size="30" type="email" required="">
+                  </p>
+                  <button class="btn btn-primary" name="action_add" type="submit">{% trans "Add E-mail" %}</button>
+              </form>
+
+          {% endblock %}
+
+
+{% block extra_body %}
+<script type="text/javascript">
+document.getElementById("changemail").reset();
+(function() {
+  var message = "{% trans 'Do you really want to remove the selected e-mail address?' %}";
+  var actions = document.getElementsByName('action_remove');
+  if (actions.length) {
+    actions[0].addEventListener("click", function(e) {
+      if (! confirm(message)) {
+        e.preventDefault();
+      }
+    });
+  }
+})();
+</script>
+{% endblock %}

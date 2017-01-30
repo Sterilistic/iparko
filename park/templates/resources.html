@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/resources.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="row" id="top-row">
+	<div class="col l3" id="books">
+		<div class="row">
+			<div class="col l4">
+				<img src="{% static 'images/book.png' %}" height="50" width="50" style="margin: 10px 0 0 25px;">
+			</div>
+			<div class="col l8">
+				<h4>Books</h4>
+			</div>
+		</div>
+		<div class="row">
+		 <ul class="collection">
+		 {% for book in books %}
+		    <li class="collection-item">
+		      <i class="material-icons small">book</i>
+		      <span class="title">{{book.title}}<br></span>
+		    </li>
+		 {% endfor %}
+		  </ul>
+		  </div>
+
+	</div>
+
+	<div class="col l3" id="articles">
+		<div class="row">
+			<div class="col l4">
+				<img src="{% static 'images/article.png' %}" height="50" width="50" style="margin: 10px 0 0 25px;">
+			</div>
+			<div class="col l8">
+				<h4>Articles</h4>
+			</div>
+		</div>
+		<div class="row">
+		 <ul class="collection">
+		    <li class="collection-item avatar">
+		      <span class="title">Title</span>
+		      <p>First Line <br>
+		         Second Line
+		      </p>
+		    </li>
+		    <li class="collection-item avatar">
+		      <span class="title">Title</span>
+		      <p>First Line <br>
+		         Second Line
+		      </p>
+		    </li>
+		    <li class="collection-item avatar">
+		      <span class="title">Title</span>
+		      <p>First Line <br>
+		         Second Line
+		      </p>
+		    </li>
+		    <li class="collection-item avatar">
+		      <span class="title">Title</span>
+		      <p>First Line <br>
+		         Second Line
+		      </p>
+		    </li>
+		  </ul>
+		  </div>
+
+	</div>
+
+	<div class="col l3" id="Courses">
+		<div class="row">
+			<div class="col l4">
+				<img src="{% static 'images/mooc.png' %}" height="50" width="50" style="margin: 10px 0 0 25px;">
+			</div>
+			<div class="col l8">
+				<h4>Courses</h4>
+			</div>
+		</div>
+		<div class="row">
+		 <ul class="collection">
+		    <li class="collection-item avatar">
+		      <img src="{% static 'images/band1.jpg' %} alt="">
+		      <span class="title">Title</span>
+		      <p>First Line <br>
+		         Second Line
+		      </p>
+		      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+		    </li>
+		    <li class="collection-item avatar">
+		      <i class="material-icons circle">folder</i>
+		      <span class="title">Title</span>
+		      <p>First Line <br>
+		         Second Line
+		      </p>
+		      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+		    </li>
+		    <li class="collection-item avatar">
+		      <i class="material-icons circle green">insert_chart</i>
+		      <span class="title">Title</span>
+		      <p>First Line <br>
+		         Second Line
+		      </p>
+		      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+		    </li>
+		    <li class="collection-item avatar">
+		      <i class="material-icons circle red">play_arrow</i>
+		      <span class="title">Title</span>
+		      <p>First Line <br>
+		         Second Line
+		      </p>
+		      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+		    </li>
+		  </ul>
+		  </div>
+
+	</div>
+
+	<div class="col l3" id="videos">
+		<div class="row">
+			<div class="col l4">
+				<img src="{% static 'images/video1.png' %}" height="50" width="50" style="margin: 10px 0 0 25px;">
+			</div>
+			<div class="col l8">
+				<h4>Videos</h4>
+			</div>
+		</div>
+		<div class="row">
+		 <ul class="collection">
+		    <li class="collection-item avatar">
+		      <img src="{% static 'images/band1.jpg' %} alt="">
+		      <span class="title">Title</span>
+		      <p>First Line <br>
+		         Second Line
+		      </p>
+		      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+		    </li>
+		    <li class="collection-item avatar">
+		      <i class="material-icons circle">folder</i>
+		      <span class="title">Title</span>
+		      <p>First Line <br>
+		         Second Line
+		      </p>
+		      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+		    </li>
+		    <li class="collection-item avatar">
+		      <i class="material-icons circle green">insert_chart</i>
+		      <span class="title">Title</span>
+		      <p>First Line <br>
+		         Second Line
+		      </p>
+		      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+		    </li>
+		    <li class="collection-item avatar">
+		      <i class="material-icons circle red">play_arrow</i>
+		      <span class="title">Title</span>
+		      <p>First Line <br>
+		         Second Line
+		      </p>
+		      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+		    </li>
+		  </ul>
+		  </div>
+
+	</div>
+	</div>
+</div>
+{% endblock %}

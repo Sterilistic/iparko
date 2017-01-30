@@ -1,0 +1,329 @@
+{% extends 'profile.html' %}
+
+{% load static %}
+{% block bcrumb %} <ol  style="margin-bottom: 0px;" class="breadcrumb">
+  <li class="breadcrumb-item"><a href="/">Home</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'practice' %}">Practice</a></li>
+  <li class="breadcrumb-item "><a href="{% url 'getquestions' %}?lang=python">Question List</a></li>
+  <li class="breadcrumb-item active">Solve Question</li>
+</ol>{% endblock %}
+{% block title %} Practice-Question {% endblock %}
+{% block heading %} Practice to refine your skills {% endblock %}
+{% block content2 %}
+{% csrf_token %}
+<style type="text/css">\
+	/*div.e:hover{
+		background-color: #000;
+	}*/
+	a.cardhead:hover{
+		text-decoration: none;
+		font-size: 50px;
+		color:white;
+        background-color: #039BE5;
+        transition: background 0.2s linear;
+    -moz-transition: background 0.2s linear; /* Firefox 4 */
+    -webkit-transition: background 0.2s linear; /* Safari and Chrome */
+    -o-transition: background 0.2s linear; /* Opera */
+    -ms-transition: background 0.2s linear; /* Explorer 10 */
+	}
+	.centercard{
+		display: flex;
+	    justify-content: center;
+	    align-items: center;
+	}
+	.dragdown{
+		padding-top: 20%;
+		padding-bottom: 20%
+	}
+	.cardhead{
+		font-family: 'Oxygen', 'san-serif';
+		color: #204056;
+	}
+	.cardheadsize{
+		font-size:3em;
+	}
+    .zeus{
+    border: 1px solid black;
+    text-align: center;
+    }
+    .book {
+    padding: 15px 0 0 0;
+    margin: auto;
+}
+    .shelf {
+        border-bottom: 30px solid #A1A194;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        top: -15px;
+        z-index: -1;
+    }
+</style>
+<style type="text/css" media="screen">
+    #editor { 
+        position: relative;
+        height: 100%;
+        width:100%;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+</style>
+<div class="row" style="display: flex; margin-bottom: 50px;">
+<div class=" col-sm-6 col-md-6 col-lg-6 " style="background-color: white; margin-top: 20px; height: 550px; overflow-y: scroll;overflow-x: hidden;">
+    <div class="panel-body"><b>Question:</b>{{ details|safe }}
+
+    </div>
+    
+</div>
+
+<!-- Coding Area-->
+
+<div class=" col-sm-6 col-md-6 col-lg-6 " style="margin-top: 20px; margin-bottom: 50px;">
+    <div id="editor" style="height: 350px;">'''
+# Read input from stdin and provide input before running code
+
+name = raw_input('What is your name?\n')
+print 'Hi, %s.' % name
+'''
+print 'Hello World!'
+
+    </div>
+    <div class="row" style="margin:auto;">
+        <button id="comprun" class="btn btn-info" style="margin: 5px; float: right;">Compile & Run</button>
+        <div  style="float: left;margin-top:7px;">
+             <label><input id="chkBox" type="checkbox" value="">Custom Inputs</label>
+        </div>
+    </div>
+    <div id="txt" style="display: none; margin-bottom: 10px;">
+         <textarea id="custin" placeholder="Custom input window" class="form-control" rows="3" style="margin-bottom: 5px;" ></textarea>
+    </div>
+    <div style="background-color: gray;  width: 100%;">
+        <textarea id="output_window" class="form-control" rows="5" placeholder="Output window"  disabled></textarea>
+    </div>
+    
+    
+</div>
+</div>
+
+
+{% endblock %}
+
+{% block modal %}<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Results</h4>
+      </div>
+      <div class="modal-body">
+        <label for="input_window">Input</label><textarea id="input_window" placeholder="Input window" class="form-control" rows="3" style="margin-bottom: 5px;" disabled></textarea>
+        <label for="expected_output_window">Expected output</label><textarea id="expected_output_window" placeholder="Output window" class="form-control" rows="3" style="margin-bottom: 5px;" disabled></textarea>
+        <label for="user_output_window">Output</label><textarea id="user_output_window" placeholder="Output window" class="form-control" rows="3"  disabled></textarea>
+        <div id="status"   style="display:none;width: 100%;height: 80px;margin-bottom: 5px; text-align: center;padding: 10px;background-color: whitesmoke;margin-top: 5px;"></div>
+      </div>
+      <div class="modal-footer">
+        <button id="subcode" class="btn btn-info" style="margin: 5px;">Submit</button>
+        <button id="tryagain" type="button" class="btn btn-default" data-dismiss="modal">Try again</button>
+      </div>
+    </div>
+
+  </div>
+</div> 
+
+{% endblock %}   
+http://127.0.0.1:8000/practice/
+
+
+{% block script %} 
+
+
+  <script type="text/javascript">
+      document.getElementById("panelbd").style.display = "None";
+      document.getElementById("panelques").style.display = "None";
+  </script> 
+  <script type="text/javascript">
+      $(document).ready(function () {
+            $('#chkBox').click(function () {
+                $("#txt").slideToggle();
+                
+            });
+    });
+  </script>
+    <script src= {% static 'ace_src/ace.js' %} type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai");
+        editor.resize();
+        editor.getSession().setMode("ace/mode/{{ lang }}");
+    </script> 
+
+
+   
+
+
+  <script type="text/javascript">
+          
+       $(document).ready(function(){
+
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+
+        $("#subcode").on("click",function(){
+            document.getElementById("subcode").disabled = true;
+            var state_pane = document.getElementById('status');
+            state_pane.innerHTML = "";
+            $("#status").slideToggle();
+            var code = editor.getValue();
+            var custin = $('#custin').val();
+            var qid = getUrlParameter('qid');
+            $.ajax({
+                url:"{% url 'sub_code'%}",
+                type:"POST",
+                data:{ "code": code, "language":"PYTHON2","qid":qid},
+                cache:false,
+                datatype: "json",
+                success: function(result){
+                    //do something
+                    var state = result[0];
+                    var sub_id = result[1];
+                    for (i=0;i<result[0];i++){
+                        var t_state = document.createElement('div');
+                        var t_case = document.createElement('div');
+                        t_case.setAttribute('class','col-sm-4 col-md-4 col-lg-4');
+                        var ico = document.createElement('i');
+                        ico.setAttribute('class','fa fa-clock-o');
+                        ico.setAttribute('name','state_ico');
+                        t_case.innerHTML='Test-case #'+(i+1)+" &nbsp;";
+                        t_case.appendChild(ico);
+                        t_state.appendChild(t_case);
+                        state_pane.appendChild(t_state);
+                        state_r(sub_id);
+                    }
+                }
+
+            });
+        });
+
+        function state_r(sub_id){
+            var state_pane = document.getElementById('status');
+            $.ajax({
+                url:"{% url 'get_status' %}",
+                type:"POST",
+                data:{"sub_id":sub_id},
+                cache:false,
+                datatype:"json",
+                success: function(result){
+                    var arr = new Array();
+                    arr = document.getElementsByName('state_ico');
+                    for(var i = 0; i < arr.length; i++)
+                        {   
+                            if (result[i]=="Correct"){
+                                arr[i].setAttribute('class','fa fa-check');
+                                arr[i].style.color = "green";
+
+                            }
+                        else if(result[i]=="Wrong"){
+                                arr[i].setAttribute('class','fa fa-times');
+                                arr[i].style.color = "red";
+                            }
+                            
+                        }
+            }
+        });
+    }
+
+        $("#comprun").on("click", function () {
+            $('#output_window').text('loading...');
+            $('#input_window').text('loading...');
+            $('#expected_output_window').text('loading...');
+            $('#user_output_window').text('loading...');
+            var request;
+            var code = editor.getValue();
+            var custin = $('#custin').val();
+            var qid = getUrlParameter('qid');
+            if ($('#chkBox').is(':checked')==true){
+
+                $.ajax({
+                    url: "{% url 'ques_run' %}",
+                    type: "POST",
+                    data: { "code": code, "language":"PYTHON2","inputs":custin,"check":1},
+                    cache: false,
+                    datatype: "json",
+                    success : function(result) {
+                        $('#output_window').text('');
+                        $('#input_window').text('');
+                        $('#expected_output_window').text('');
+                        $('#user_output_window').text('');
+                        if (result['output']==""){
+                            document.getElementById('output_window').innerHTML = (result['error']);
+                        }
+                        else{
+                            console.log(result[0]);
+                        document.getElementById('output_window').innerHTML = document.getElementById('output_window').innerHTML+(result[0].output);
+                        document.getElementById('output_window').innerHTML = document.getElementById('output_window').innerHTML+(result[0].error);
+                        }
+                    }
+                });
+                }
+            else{
+                $('#myModal').modal('show');
+                $('#subcode').prop('disabled', true);
+                $('#tryagain').prop('disabled',true);
+                $.ajax({
+                    url: "{% url 'ques_run' %}",
+                    type: "POST",
+                    data: { "code": code, "language":"PYTHON2","qid":qid},
+                    cache: false,
+                    datatype: "json",
+                    success : function(result) {
+                        $('#subcode').prop('disabled', false);
+                        $('#tryagain').prop('disabled',false);
+                        $('#output_window').text('');
+                        $('#input_window').text('');
+                        $('#expected_output_window').text('');
+                        $('#user_output_window').text('');
+                        for (i=0;i<result.length;i++){
+                            if (result[i].output){
+                                document.getElementById('input_window').innerHTML = document.getElementById('input_window').innerHTML+(result[i]['input']);
+                                document.getElementById('expected_output_window').innerHTML = document.getElementById('expected_output_window').innerHTML+(result[i]['expected output']);
+                                document.getElementById('user_output_window').innerHTML = document.getElementById('user_output_window').innerHTML+(result[i].output);
+                            }
+                            else{
+                                document.getElementById('input_window').innerHTML = document.getElementById('input_window').innerHTML+(result[i]['input']);
+                                document.getElementById('expected_output_window').innerHTML = document.getElementById('expected_output_window').innerHTML+(result[i]['expected output']);
+                                document.getElementById('user_output_window').innerHTML = document.getElementById('user_output_window').innerHTML+(result[i].error);
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+    });
+
+    $('#myModal').on('hidden.bs.modal', function () {
+    $('#output_window').text('');
+    $('#status').toggle(false);
+    editor.focus(); //To focus the ace editor
+    var n = editor.getSession().getValue().split("\n").length; // To count total no. of lines
+    editor.gotoLine(n); //Go to end of document
+    document.getElementById("subcode").disabled = false;
+    })
+
+  </script> {% endblock %}

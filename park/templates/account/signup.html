@@ -1,0 +1,217 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="#">
+        <script src="https://use.fontawesome.com/41f40c085c.js"></script>
+    <title>Develop your skills</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="{% static 'css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/navbar-fixed-top.css' %}" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+    <script type="text/javascript">
+      function showerr(err) {
+        alert(err);
+        }
+    
+  </script>
+    <style type="text/css">
+*{box-sizing:border-box}.lh1,.lh3{font-weight:300}.lh1{color:#636363}.lh3{color:#4a89dc}.lform{width:180px;margin:4em auto;padding:3em 2em 2em;background:#fafafa;border:1px solid #ebebeb;box-shadow:rgba(0,0,0,0.14902) 0 1px 1px 0px,rgba(0,0,0,0.09804) 0 1px 2px 0}.group{position:relative;margin-bottom:25px}.linput{font-size:18px;padding:10px 10px 10px 5px;-webkit-appearance:none;display:block;background:#fafafa;color:#636363;width:100%;border:none;border-radius:0;border-bottom:1px solid #757575}.linput:focus{outline:none}.llabel{color:#999;font-size:18px;font-weight:400;position:absolute;pointer-events:none;left:5px;top:10px;transition:all .2s ease}.linput:focus ~ .llabel,.linput.used ~ .llabel{top:-20px;transform:scale(.75);left:-2px;color:#4a89dc}.bar{position:relative;display:block;width:100%}.bar:before,.bar:after{content:'';height:2px;width:0;bottom:1px;position:absolute;background:#4a89dc;transition:all .2s ease}.bar:before{left:50%}.bar:after{right:50%}.linput:focus ~ .bar:before,.linput:focus ~ .bar:after{width:50%}.highlight{position:absolute;height:60%;width:100px;top:25%;left:0;pointer-events:none;opacity:.5}.linput:focus ~ .highlight{animation:inputHighlighter .3s ease}@keyframes inputHighlighter{from{background:#4a89dc}to{width:0;background:transparent}}.lbutton{position:relative;display:inline-block;padding:12px 24px;margin:.3em 0 1em;width:100%;vertical-align:middle;color:#fff;font-size:16px;line-height:20px;-webkit-font-smoothing:antialiased;text-align:center;letter-spacing:1px;background:transparent;border:0;border-bottom:2px solid #3160B6;cursor:pointer;transition:all .15s ease}.lbutton:focus{outline:0}.lbuttonBlue{background:#4a89dc;text-shadow:1px 1px 0 rgba(39,110,204,.5)}.lbuttonBlue:hover{background:#357bd8}.lripples{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;background:transparent}.lripplesCircle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0;width:0;height:0;border-radius:50%;background:rgba(255,255,255,0.25)}.lripples.is-active .ripplesCircle{animation:ripples .4s ease-in}@keyframes ripples{0%{opacity:0}25%{opacity:1}100%{width:200%;padding-bottom:200%;opacity:0}}.siteblue{background-color:#337ab7;margin-top: 20px;margin-bottom: 20px; font-size: large;}.white{color:#fff}a.white:hover{color:#ffd700;text-decoration:none}
+    </style>
+  </head>
+
+  <body>
+  
+  <!--registration modal-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+                <h3  class="modal-title" id="myModalLabel">
+                    Get started - it's free. </h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12" style="border-right: 1px dotted #C2C2C2;padding-right: 30px;">
+                        <!-- Nav tabs -->
+                        
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active focus" id="Registration">
+                                <form style="margin-top: 10px;" action="/accounts/signup/" method="post" role="form" id="signup_form" class="signup form-horizontal">{% csrf_token %}
+                                <div class="group">
+                                  <input class="linput" id="id_email" name="email" type="email" required><span class="highlight"></span><span class="bar"></span>
+                                  <label class="llabel">Email</label>
+                                </div>
+                                <div class="group">
+                                  <input id="id_password1" name="password1"  type="password" class="linput" required><span class="highlight"></span><span class="bar"></span>
+                                  <label class="llabel">Password</label>
+                                </div>
+                                <div class="group">
+                                  <input class="linput" id="id_password2" name="password2" type="password" required><span class="highlight"></span><span class="bar"></span>
+                                  <label class="llabel">Password confirmation</label>
+                                </div>
+                                <div style="text-align: center; margin-left: 40px; margin-right: 40px;"><p>By clicking join now, you agree to the Skillprofile <a href="#">User Agreement</a>, <a href="#">Privacy Policy</a>, and <a href="#"> Cookie Policy</a>.</p></div>
+                                 <input type="submit" class="lbutton lbuttonBlue" value="Join now" />
+                               
+                                </form>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+
+
+
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #337ab7;
+    border-color: rgb(89, 192, 220);">
+      <div class="container">
+
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar" style="  background-color: white;"></span>
+            <span class="icon-bar" style="background-color: white;"></span>
+            <span class="icon-bar" style="  background-color: white;"></span>
+          </button> 
+          <a class="navbar-brand" style=" margin-top:1rem;font-size: 200%;color: white;" href="/">Skill Profile</a>
+
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li style="margin-left: 20px; margin-top:10px; margin-bottom: 0px;"><form id="login_form" class="" method="post" action="{% url 'account_login' %}"><div class="row">
+                {% csrf_token %}
+                {% if form.errors %}
+                    {% for field in form %}
+                      <script type="text/javascript">
+                        showerr("{{ fields.errors|escape }}");
+                      </script>
+                        <!-- #{% for error in field.errors %}
+                          #<script type="text/javascript">
+                          #showerr("{{ error|escape }}");
+                          #</script>
+                        #{% endfor %} 
+                        -->
+                    {% endfor %}
+                    <script type="text/javascript">
+                        showerr("{{ form.non_field_errors|escape }}");
+                      </script>
+                    <!-- #{% for error in form.non_field_errors %}                        
+                       #<script type="text/javascript">
+                        #  showerr("{{ error|escape }}");
+                         # </script>
+                  #{% endfor %} 
+                  -->
+                {% endif %}
+               <div style="display:inline-block;">
+                <input  autofocus="autofocus" id="id_login" name="login"   class="validate used form-control" placeholder="Email" type="email" required>
+              </div>
+
+              <div style="display:inline-block;">
+                <input id="id_password" name="password" placeholder="Password" class="used form-control validate" type="password" required>
+              </div>
+              
+            
+              <div style=" display:inline-block;">
+              <input style="background-color: #2196F3;" type="submit" value="Login" class=" primaryAction btn btn-primary button" >
+               </div>
+                  
+               <div style="display:inline-block;">
+              <a class="btn btn-primary" style="background-color: #0091EA;" data-toggle="modal"  data-target="#myModal" type="button">Signup</a>
+               </div>
+               
+              </div>
+              <div class="row" style="margin-bottom: -2%;">&nbsp;&nbsp;<p style="display: -webkit-inline-box;"><label for="id_remember" class="white">Remember Me:</label> <input id="id_remember" name="remember" type="checkbox"></p>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+              <a class=" white button secondaryAction" href="/accounts/password/reset/">Forgot Password?</a></div>
+          </form></li>
+           
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" style="margin-bottom: 4rem;width: 80%;">
+
+      <!-- Main component for a primary marketing message or call to action -->
+        <div class="row-fluid">
+          <div class="span4 offset4 text-center" style="margin-bottom: 60px;margin-top: 100px;"><h1>Build Your Skills!</h1>
+        <h3>a platform to help you showcase your skills and improve them</h3>
+      </div>
+          
+        <div class="card col-sm-12 col-md-4 span4 offset4 text-center">
+          <!-- <img class="card-img-top" src="http://lorempixel.com/242/260/sports/1" alt="Card image cap"> -->
+          <div class="card-block"> 
+          <div style="    height: 100px;"> <p style="  font-size: large;" class="card-text">Learn a software skill. Take a free course, read a few free books, watch suggested videos or read suggested articles</p>
+          </div>
+            <a  id="learn" onclick="status_c(this.id)" class="siteblue btn btn-info btn-block">Learn</a>
+          </div>
+        </div>
+        <div class="card col-sm-12 col-md-4 span4 offset4 text-center">
+          
+          <div class="card-block">   
+          <div style="    height: 100px;"><p style="  font-size: large;" class="card-text">The only effective way to learn software is through practicing coding. Practice as you learn and get suggestions on improvement</p></div>
+            <a id="practice" onclick="status_c(this.id)" class="siteblue btn btn-info btn-block">Practice</a>
+          </div>
+        </div>
+        <div class="card col-sm-12 col-md-4 span4 offset4 text-center">
+          
+          <div class="card-block">
+            <div style="    height: 100px;"> <p style="  font-size: large;" class="card-text">Once you learn and practice, feel free to test yourself and see your performance in numbers. Figure out your rank</p></div>
+            <a id="ttest" onclick="status_c(this.id)" class="siteblue btn btn-info btn-block">Test</a>
+          </div>
+        </div>
+  </div>
+
+    </div> <!-- /container -->
+
+    <div class="clearfix footer navbar-fixed-bottom" style="background-color: #337ab7;margin-bottom: 0px;">
+      <div class="panel-body"><div style="float: right;">Powered by <span style="color: white;" class="website_link">Future Focus Infotech Pvt. Ltd.</span></div></div>
+  </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{% static 'js/jquery-3.1.1.min.js' %}"><\/script>')</script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/disco.js' %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+    <script type="text/javascript">
+    document.getElementById("login_form").reset();
+    document.getElementById("signup_form").reset();
+  </script>
+  <script type="text/javascript">
+    $(window,document,void 0).ready(function(){$("#m1").modal("show"),$("input").blur(function(){var a=$(this);a.val()?a.addClass("used"):a.removeClass("used")});var a=$(".ripples");a.on("click.Ripples",function(a){var b=$(this),c=b.parent().offset(),d=b.find(".ripplesCircle"),e=a.pageX-c.left,f=a.pageY-c.top;d.css({top:f+"px",left:e+"px"}),b.addClass("is-active")}),a.on("animationend webkitAnimationEnd mozAnimationEnd oanimationend MSAnimationEnd",function(a){$(this).removeClass("is-active")})});
+  </script>
+  </body>
+</html>
+<!-- -->
